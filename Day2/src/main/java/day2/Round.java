@@ -1,8 +1,22 @@
 package day2;
 
 
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 public class Round implements Scorable
 {
+    private static final Map<Shape, Integer> INDEXES = new HashMap<>();
+    static
+    {
+        INDEXES.put(Shape.ROCK, 0);
+        INDEXES.put(Shape.PAPER, 1);
+        INDEXES.put(Shape.SCISSORS, 2);
+    }
+    private static final List<Shape> SHAPES = Arrays.asList(Shape.ROCK, Shape.PAPER, Shape.SCISSORS);
+
     private final Shape opponent;
     private final Shape own;
     private final Result result;
@@ -34,34 +48,14 @@ public class Round implements Scorable
 
     public Result calculateResult()
     {
-        switch (own)
+        final int diff = Math.floorMod(INDEXES.get(own) - INDEXES.get(opponent), 3);
+        switch (diff)
         {
-            case ROCK:
-                switch (opponent)
-                {
-                    case SCISSORS: return Result.WIN;
-                    case PAPER: return Result.LOSS;
-                    case ROCK: return Result.DRAW;
-                }
-                break;
-            case PAPER:
-                switch (opponent)
-                {
-                    case SCISSORS: return Result.LOSS;
-                    case PAPER: return Result.DRAW;
-                    case ROCK: return Result.WIN;
-                }
-                break;
-            case SCISSORS:
-                switch (opponent)
-                {
-                    case SCISSORS: return Result.DRAW;
-                    case PAPER: return Result.WIN;
-                    case ROCK: return Result.LOSS;
-                }
-                break;
+            case 0: return Result.DRAW;
+            case 1: return Result.WIN;
+            case 2: return Result.LOSS;
         }
-        throw new IllegalArgumentException("Invalid shape");
+        throw new IllegalArgumentException();
     }
 
     public Shape calculateShape()
@@ -69,22 +63,8 @@ public class Round implements Scorable
         switch (result)
         {
             case DRAW: return opponent;
-            case LOSS:
-                switch (opponent)
-                {
-                    case ROCK: return Shape.SCISSORS;
-                    case PAPER: return Shape.ROCK;
-                    case SCISSORS: return Shape.PAPER;
-                }
-                break;
-            case WIN:
-                switch (opponent)
-                {
-                    case ROCK: return Shape.PAPER;
-                    case PAPER: return Shape.SCISSORS;
-                    case SCISSORS: return Shape.ROCK;
-                }
-                break;
+            case LOSS: return SHAPES.get((INDEXES.get(opponent) + 2) % 3);
+            case WIN: return SHAPES.get((INDEXES.get(opponent) + 1) % 3);
         }
         throw new IllegalArgumentException();
     }
