@@ -1,4 +1,4 @@
-package xyz.foulds.day10;
+package xyz.foulds.aoc.year22.day10;
 
 public class NoOp implements Instruction
 {

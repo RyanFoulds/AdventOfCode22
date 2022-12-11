@@ -1,4 +1,4 @@
-package xyz.foulds.day11;
+package xyz.foulds.aoc.year22.day11;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
