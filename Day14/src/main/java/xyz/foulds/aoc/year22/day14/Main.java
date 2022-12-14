@@ -26,15 +26,10 @@ public class Main
         System.out.println(calculateSandCount(walls, true));
     }
 
-    private static int calculateSandCount(final List<Wall> walls, final boolean withFloor)
+    private static int calculateSandCount(final List<Wall> walls, final boolean hasFloor)
     {
-        final Cave cave = new Cave();
-        walls.forEach(cave::addWall);
-        cave.lockInWalls();
-        while(cave.addSand(withFloor))
-        {
-            // Just wait for this to break;
-        }
+        final Cave cave = new Cave(walls, hasFloor);
+        cave.pourSand();
         return cave.getSandCount();
     }
 }
