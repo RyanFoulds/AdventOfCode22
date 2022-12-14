@@ -1,20 +1,25 @@
 package xyz.foulds.aoc.year22.day1;
 
-import java.io.*;
-import java.nio.charset.Charset;
-import java.util.*;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.List;
 import java.util.stream.Collectors;
 
 public class Main
 {
-    public static void main(final String[] args)
+    public static void main(final String[] args) throws IOException
     {
-        final InputStream inputStream = ClassLoader.getSystemResourceAsStream("input.txt");
-        final String input = new BufferedReader(new InputStreamReader(Objects.requireNonNull(inputStream),
-                                                                            Charset.defaultCharset()))
-                .lines()
-                .map(String::trim)
-                .collect(Collectors.joining("\n"));
+        if (args.length != 1)
+        {
+            throw new IllegalArgumentException("Please provide a single file path for the puzzle input.");
+        }
+        final String input = Files.readAllLines(Paths.get(args[0]))
+                                  .stream()
+                                  .map(String::trim)
+                                  .collect(Collectors.joining("\n"));
 
         final List<Integer> orderedElves = Arrays.stream(input.split("\n\n"))
                                                  .map(elf -> Arrays.stream(elf.split("\n"))

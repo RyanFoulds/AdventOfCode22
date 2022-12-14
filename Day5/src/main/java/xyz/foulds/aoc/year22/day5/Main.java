@@ -1,23 +1,21 @@
 package xyz.foulds.aoc.year22.day5;
 
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.nio.charset.Charset;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class Main
 {
-    public static void main(final String[] args)
+    public static void main(final String[] args) throws IOException
     {
-        final InputStream inputStream = ClassLoader.getSystemResourceAsStream("input.txt");
-        final String input = new BufferedReader(new InputStreamReader(Objects.requireNonNull(inputStream),
-                                                                            Charset.defaultCharset()))
-                .lines()
-                .collect(Collectors.joining("\n"));
+        if (args.length != 1)
+        {
+            throw new IllegalArgumentException("Please provide a single file path for the puzzle input.");
+        }
+        final String input = String.join("\n", Files.readAllLines(Paths.get(args[0])));
 
         final String[] parts = input.split("\n\n");
         final String stackString = parts[0];
