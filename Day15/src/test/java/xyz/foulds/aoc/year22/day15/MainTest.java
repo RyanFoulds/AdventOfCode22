@@ -1,9 +1,9 @@
+package xyz.foulds.aoc.year22.day15;
+
 import java.io.IOException;
 
 import org.junit.Ignore;
 import org.junit.Test;
-
-import xyz.foulds.aoc.year22.day15.Main;
 
 @Ignore
 public class MainTest
