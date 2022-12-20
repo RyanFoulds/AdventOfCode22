@@ -1,9 +1,11 @@
 import java.io.IOException;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 import xyz.foulds.aoc.year22.day16.Main;
 
+@Ignore
 public class MainTest
 {
     @Test
