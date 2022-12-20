@@ -2,4 +2,6 @@
 */.idea/
 */out/
 */target/
-*.txt
+*/input.txt
+*/inputTest.txt
+.idea/
