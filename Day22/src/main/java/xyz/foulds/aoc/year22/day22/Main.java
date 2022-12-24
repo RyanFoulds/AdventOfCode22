@@ -23,7 +23,12 @@ public class Main
 
         // Part 1.
         final Board board = new Board(boardLines);
-        board.moveAlongPath(input[1]);
+        board.moveAlongPath(input[1], false);
+        System.out.println(board.getScore());
+
+        // Part 2.
+        board.reset();
+        board.moveAlongPath(input[1], true);
         System.out.println(board.getScore());
     }
 }
