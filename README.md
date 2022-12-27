@@ -4,7 +4,7 @@ Repo for advent of code solutions for 2022
 To run the solution for any of the days:
 - Build the project with `mvn clean install`
 - create a file containing your puzzle input
-- run `java -jar day<number>-<version>.jar <inputFilePath>
+- run `java -jar day<number>-<version>.jar <inputFilePath>`
 
 Alternatively,
 - Open the project in your favourite IDE
